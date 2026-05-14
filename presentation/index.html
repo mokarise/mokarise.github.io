@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Technologies — Mokhtar Karema 78126</title>
+
+  <!-- Reveal.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <!-- Non-default theme: Moon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/moon.css" id="theme">
+  <!-- Syntax highlighting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <style>
+    /* Custom overrides */
+    .reveal h1, .reveal h2 { color: #5dd3f0; }
+    .reveal h3 { color: #f0c45d; }
+    .reveal .subtitle { color: #aaaaaa; font-size: 0.7em; }
+    .reveal .author { color: #5dd3f0; font-weight: bold; margin-top: 0.5em; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(93,211,240,0.3);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-align: left;
+      font-size: 0.62em;
+    }
+    .card h4 { color: #5dd3f0; margin: 0 0 6px 0; font-size: 1.1em; }
+    .card p  { margin: 0; color: #cccccc; line-height: 1.5; }
+
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+    .timeline li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+      font-size: 0.62em;
+    }
+    .year-badge {
+      background: #5dd3f0;
+      color: #000;
+      font-weight: bold;
+      border-radius: 6px;
+      padding: 3px 8px;
+      min-width: 42px;
+      text-align: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .timeline li p { margin: 0; color: #cccccc; }
+
+    .protocol-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.58em;
+      margin-top: 14px;
+    }
+    .protocol-table th {
+      background: rgba(93,211,240,0.2);
+      color: #5dd3f0;
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(93,211,240,0.3);
+    }
+    .protocol-table td {
+      padding: 6px 10px;
+      color: #cccccc;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .protocol-table tr:hover td { background: rgba(255,255,255,0.05); }
+
+    .highlight-box {
+      background: rgba(93,211,240,0.1);
+      border-left: 4px solid #5dd3f0;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 18px;
+      margin: 10px 0;
+      font-size: 0.62em;
+      color: #cccccc;
+      text-align: left;
+    }
+    .highlight-box strong { color: #5dd3f0; }
+
+    .vs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+    .vs-box {
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.58em;
+      text-align: left;
+    }
+    .vs-box.http  { background: rgba(240,100,100,0.15); border: 1px solid rgba(240,100,100,0.4); }
+    .vs-box.https { background: rgba(93,211,100,0.12); border: 1px solid rgba(93,211,100,0.4); }
+    .vs-box h4 { margin: 0 0 8px 0; font-size: 1.2em; }
+    .vs-box.http  h4 { color: #f07070; }
+    .vs-box.https h4 { color: #70f090; }
+    .vs-box ul { margin: 0; padding-left: 16px; color: #cccccc; line-height: 1.7; }
+
+    .big-stat {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #5dd3f0;
+      display: block;
+    }
+    .stat-label { font-size: 0.55em; color: #aaa; }
+    .stats-row {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .osi-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 14px;
+      font-size: 0.58em;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .osi-num {
+      background: #5dd3f0;
+      color: #000;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .osi-row { display: contents; }
+    .osi-info { display: flex; flex-direction: column; justify-content: center; }
+    .osi-info strong { color: #f0c45d; }
+    .osi-info span { color: #aaa; }
+
+    pre code { font-size: 0.75em !important; }
+  </style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 1 — TITLE
+═══════════════════════════════════════════════════════════════ -->
+<section data-background-gradient="radial-gradient(circle at 30% 40%, #0d2137 0%, #0a0a1a 70%)">
+  <h1 style="font-size:1.6em; margin-bottom:0.2em;">🌐 Internet Technologies</h1>
+  <p class="subtitle">From the First Packet to the Modern Web</p>
+  <hr style="border-color:rgba(93,211,240,0.3); margin: 20px auto; width:60%;">
+  <p class="author">Mokhtar Karema &nbsp;|&nbsp; ID: 78126</p>
+  <p class="subtitle">56DPH Internet Technologies DK-L-2025/26<br>Vistula University</p>
+
+  <div style="margin-top:30px; font-size:0.45em; color:#666;">
+    ← → to navigate horizontally &nbsp;|&nbsp; ↓ for sub-slides
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 2 — HISTORY (horizontal) with vertical sub-slides
+═══════════════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>📜 History of the Internet</h2>
+    <ul class="timeline">
+      <li>
+        <span class="year-badge">1969</span>
+        <p><strong>ARPANET</strong> — first packet-switched network, connecting 4 US universities. The first message sent was "lo" (login crashed after two letters).</p>
+      </li>
+      <li>
+        <span class="year-badge">1983</span>
+        <p><strong>TCP/IP adopted</strong> — ARPANET switches to the TCP/IP protocol suite, creating the foundation of the modern internet.</p>
+      </li>
+      <li>
+        <span class="year-badge">1991</span>
+        <p><strong>World Wide Web born</strong> — Tim Berners-Lee publishes the first website at CERN (<em>info.cern.ch</em>), introducing HTTP and HTML.</p>
+      </li>
+      <li>
+        <span class="year-badge">1993</span>
+        <p><strong>Mosaic browser</strong> — first graphical web browser, making the web accessible to the general public.</p>
+      </li>
+      <li>
+        <span class="year-badge">2000s</span>
+        <p><strong>Web 2.0</strong> — rise of social media, user-generated content, broadband, and JavaScript-powered web apps.</p>
+      </li>
+    </ul>
+    <p style="font-size:0.4em; color:#666; margin-top:10px;">↓ press down for more</p>
+  </section>
+
+  <section>
+    <h2>📊 Internet Today</h2>
+    <div class="stats-row">
+      <div>
+        <span class="big-stat">5.4B</span>
+        <span class="stat-label">Internet users worldwide<br>(2024)</span>
+      </div>
+      <div>
+        <span class="big-stat">1.1B</span>
+        <span class="stat-label">Websites registered<br>(2024)</span>
+      </div>
+      <div>
+        <span class="big-stat">330M</span>
+        <span class="stat-label">Emails sent per day<br>(millions)</span>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:24px;">
+      <strong>Fun fact:</strong> The total amount of data transmitted over the internet every minute in 2024 includes 6 million Google searches, 500 hours of YouTube uploads, and 41 million WhatsApp messages.
+    </div>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 3 — OSI MODEL (horizontal) with vertical sub-slides
+═══════════════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>🔢 The OSI Model</h2>
+    <p style="font-size:0.6em; color:#aaa;">The 7-layer model that describes how data travels across a network</p>
+    <div class="osi-grid">
+      <div class="osi-row">
+        <div class="osi-num">7</div>
+        <div class="osi-info"><strong>Application</strong><span>HTTP, FTP, DNS, SMTP — what you use</span></div>
+      </div>
+      <div class="osi-row">
+        <div class="osi-num">6</div>
+        <div class="osi-info"><strong>Presentation</strong><span>Encryption (TLS), encoding, compression</span></div>
+      </div>
+      <div class="osi-row">
+        <div class="osi-num">5</div>
+        <div class="osi-info"><strong>Session</strong><span>Manages connections between apps</span></div>
+      </div>
+      <div class="osi-row">
+        <div class="osi-num">4</div>
+        <div class="osi-info"><strong>Transport</strong><span>TCP (reliable), UDP (fast) — ports</span></div>
+      </div>
+      <div class="osi-row">
+        <div class="osi-num">3</div>
+        <div class="osi-info"><strong>Network</strong><span>IP addressing and routing between networks</span></div>
+      </div>
+      <div class="osi-row">
+        <div class="osi-num">2</div>
+        <div class="osi-info"><strong>Data Link</strong><span>MAC addresses, Ethernet frames, switches</span></div>
+      </div>
+      <div class="osi-row">
+        <div class="osi-num">1</div>
+        <div class="osi-info"><strong>Physical</strong><span>Cables, radio waves, optical fibre</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>📦 How a Packet Travels</h2>
+    <div class="highlight-box">
+      <strong>Example:</strong> You type <em>https://google.com</em> in your browser
+    </div>
+    <ul style="font-size:0.6em; color:#cccccc; line-height:2; margin-top:10px;">
+      <li>🔍 <strong>DNS lookup</strong> — resolves "google.com" to an IP address (142.250.x.x)</li>
+      <li>🤝 <strong>TCP handshake</strong> — SYN → SYN-ACK → ACK (3 packets)</li>
+      <li>🔒 <strong>TLS handshake</strong> — Client Hello, Server Hello, certificates exchanged</li>
+      <li>📨 <strong>HTTP GET request</strong> — browser requests the page</li>
+      <li>📥 <strong>HTTP response</strong> — server sends HTML, CSS, JavaScript</li>
+      <li>🖥️ <strong>Rendering</strong> — browser builds the DOM and displays the page</li>
+    </ul>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 4 — KEY PROTOCOLS
+═══════════════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>⚙️ Key Internet Protocols</h2>
+    <table class="protocol-table">
+      <thead>
+        <tr>
+          <th>Protocol</th>
+          <th>Full Name</th>
+          <th>Port</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>HTTP</td><td>HyperText Transfer Protocol</td><td>80</td><td>Web page transfer (unencrypted)</td></tr>
+        <tr><td>HTTPS</td><td>HTTP Secure (HTTP + TLS)</td><td>443</td><td>Encrypted web communication</td></tr>
+        <tr><td>DNS</td><td>Domain Name System</td><td>53</td><td>Resolves domain names to IPs</td></tr>
+        <tr><td>TCP</td><td>Transmission Control Protocol</td><td>—</td><td>Reliable, ordered data delivery</td></tr>
+        <tr><td>UDP</td><td>User Datagram Protocol</td><td>—</td><td>Fast, connectionless (video, games)</td></tr>
+        <tr><td>SMTP</td><td>Simple Mail Transfer Protocol</td><td>587</td><td>Sending email</td></tr>
+        <tr><td>FTP</td><td>File Transfer Protocol</td><td>21</td><td>File transfers between hosts</td></tr>
+        <tr><td>QUIC</td><td>Quick UDP Internet Connections</td><td>443</td><td>Modern replacement for TCP+TLS</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>🔄 TCP vs UDP</h2>
+    <div class="vs-grid">
+      <div class="vs-box http">
+        <h4>TCP — Reliable</h4>
+        <ul>
+          <li>Connection-oriented (handshake)</li>
+          <li>Guarantees delivery and order</li>
+          <li>Error checking and retransmission</li>
+          <li>Slower — more overhead</li>
+          <li><strong>Used for:</strong> HTTP, email, file transfer</li>
+        </ul>
+      </div>
+      <div class="vs-box https">
+        <h4>UDP — Fast</h4>
+        <ul>
+          <li>Connectionless — no handshake</li>
+          <li>No delivery guarantee</li>
+          <li>No retransmission</li>
+          <li>Faster — minimal overhead</li>
+          <li><strong>Used for:</strong> video calls, gaming, DNS, QUIC</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:16px;">
+      <strong>Modern trend:</strong> QUIC (used by YouTube, Google) runs over UDP but adds its own reliability layer, combining the speed of UDP with the safety of TCP.
+    </div>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 5 — HTTP vs HTTPS
+═══════════════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>🔐 HTTP vs HTTPS</h2>
+    <div class="vs-grid">
+      <div class="vs-box http">
+        <h4>🔓 HTTP</h4>
+        <ul>
+          <li>Port 80</li>
+          <li>All data sent as plain text</li>
+          <li>Anyone on the network can read it</li>
+          <li>No certificate required</li>
+          <li>Wireshark shows full content</li>
+          <li>Used in early 1990s web</li>
+        </ul>
+      </div>
+      <div class="vs-box https">
+        <h4>🔒 HTTPS</h4>
+        <ul>
+          <li>Port 443</li>
+          <li>All data encrypted with TLS</li>
+          <li>Content invisible to sniffers</li>
+          <li>Requires SSL/TLS certificate</li>
+          <li>Only IP + SNI visible in Wireshark</li>
+          <li>Mandatory for all modern sites</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:0.4em; color:#666; margin-top:10px;">↓ press down to see Wireshark evidence</p>
+  </section>
+
+  <section>
+    <h2>🦈 Wireshark Evidence</h2>
+    <p style="font-size:0.6em; color:#aaa; margin-bottom:10px;">What a network sniffer can see in each case:</p>
+
+    <div class="highlight-box">
+      <strong>HTTP (plain text) — FULLY VISIBLE:</strong><br>
+      <code style="color:#f0c45d; font-size:0.95em;">
+        GET /connecttest.txt HTTP/1.1<br>
+        Host: www.msftconnecttest.com<br>
+        User-Agent: Microsoft NCSI<br>
+        → Response: HTTP/1.1 200 OK — "Microsoft Connect Test"
+      </code>
+    </div>
+
+    <div class="highlight-box" style="border-left-color:#70f090; background:rgba(93,211,100,0.08);">
+      <strong style="color:#70f090;">HTTPS (TLS encrypted) — HIDDEN:</strong><br>
+      <code style="color:#aaa; font-size:0.95em;">
+        TLSv1.3 — Application Data — 361 bytes<br>
+        TLSv1.3 — Application Data — 113 bytes<br>
+        [Content: ???????????????? — encrypted]
+      </code>
+    </div>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 6 — NETWORK TOOLS (Wireshark)
+═══════════════════════════════════════════════════════════════ -->
+<section>
+  <h2>🔬 Network Analysis Tools</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>🦈 Wireshark</h4>
+      <p>The most popular packet analyser. Captures all packets on a network interface using libpcap/WinPcap. Shows full protocol stack (OSI layers) for each packet. Supports display filters like <code>http</code>, <code>tls</code>, <code>tcp.port==80</code>.</p>
+    </div>
+    <div class="card">
+      <h4>📊 Protocol Hierarchy</h4>
+      <p>Wireshark's Statistics tool shows which protocols dominate traffic. In a real capture: QUIC = 49.8%, TLS = 8.2%, DNS = 4.8%, plain HTTP = only 0.1% — proving the modern web is almost entirely encrypted.</p>
+    </div>
+    <div class="card">
+      <h4>📡 tcpdump</h4>
+      <p>Command-line packet capture tool for Linux/macOS. Saves traffic to .pcap files for later analysis in Wireshark. Example: <code>tcpdump -i eth0 port 80</code> captures all HTTP traffic.</p>
+    </div>
+    <div class="card">
+      <h4>🔍 nmap</h4>
+      <p>Network scanner that discovers hosts and open ports. Used in security auditing to map network topology. Example: <code>nmap -sV 192.168.0.0/24</code> scans an entire local network.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 7 — WEB TECHNOLOGIES
+═══════════════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>💻 Web Technologies Stack</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h4>HTML — Structure</h4>
+        <p>HyperText Markup Language defines the structure and content of web pages. The first version was created by Tim Berners-Lee in 1991. Current version: HTML5.</p>
+      </div>
+      <div class="card">
+        <h4>CSS — Style</h4>
+        <p>Cascading Style Sheets control visual presentation — colours, fonts, layout, animations. Introduced in 1996. Current version: CSS3 with variables, grid, and flexbox.</p>
+      </div>
+      <div class="card">
+        <h4>JavaScript — Behaviour</h4>
+        <p>The programming language of the web, running in the browser. Powers interactive UIs, API calls, and real-time updates. Node.js also runs it on servers.</p>
+      </div>
+      <div class="card">
+        <h4>Reveal.js — This Presentation</h4>
+        <p>A JavaScript framework for creating HTML presentations. Supports Markdown, themes, syntax highlighting, and both horizontal and vertical navigation. Free and open-source.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>📝 Reveal.js Example Code</h2>
+    <p style="font-size:0.55em; color:#aaa;">This is how a slide is written in Reveal.js:</p>
+    <pre><code class="language-html" data-trim>
+&lt;!-- Basic Reveal.js slide structure --&gt;
+&lt;div class="reveal"&gt;
+  &lt;div class="slides"&gt;
+
+    &lt;!-- Horizontal slide --&gt;
+    &lt;section&gt;
+      &lt;h2&gt;My Slide Title&lt;/h2&gt;
+      &lt;p&gt;Slide content goes here&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Vertical sub-slides --&gt;
+    &lt;section&gt;
+      &lt;section&gt;&lt;h2&gt;Parent Slide&lt;/h2&gt;&lt;/section&gt;
+      &lt;section&gt;&lt;h2&gt;Sub-slide (press ↓)&lt;/h2&gt;&lt;/section&gt;
+    &lt;/section&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+    </code></pre>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 8 — SUMMARY
+═══════════════════════════════════════════════════════════════ -->
+<section data-background-gradient="radial-gradient(circle at 70% 60%, #0d2137 0%, #0a0a1a 70%)">
+  <h2>✅ Summary</h2>
+  <ul style="font-size:0.65em; color:#cccccc; line-height:2;">
+    <li>🌐 The internet began with ARPANET (1969) and the Web was born at CERN in 1991</li>
+    <li>🔢 The OSI 7-layer model describes how data travels from application to physical wire</li>
+    <li>⚙️ Key protocols: HTTP, HTTPS, TCP, UDP, DNS, QUIC — each with a specific role</li>
+    <li>🔓 HTTP is fully readable in Wireshark — no privacy whatsoever</li>
+    <li>🔒 HTTPS/TLS encrypts all content — only IP and SNI hostname are visible</li>
+    <li>🦈 Wireshark proves: modern traffic is 99.9% encrypted (only 0.1% plain HTTP)</li>
+    <li>💻 The web is built on HTML + CSS + JavaScript, deployed via GitHub Pages</li>
+  </ul>
+  <hr style="border-color:rgba(93,211,240,0.3); margin:20px auto; width:60%;">
+  <p style="font-size:0.5em; color:#5dd3f0;">
+    Mokhtar Karema &nbsp;|&nbsp; ID: 78126 &nbsp;|&nbsp; Vistula University &nbsp;|&nbsp; 2025/2026
+  </p>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<!-- Reveal.js scripts -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: true,
+    plugins: [ RevealNotes, RevealMarkdown, RevealHighlight ]
+  });
+</script>
+</body>
+</html>
